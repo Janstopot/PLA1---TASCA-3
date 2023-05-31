@@ -1,0 +1,17 @@
+<h1>Nou usuari</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <label for="nom">Nom: </label>
+    <input id="nom" type="text" formControlName="nom">
+  
+    <label for="cognom">Cognom: </label>
+    <input id="cognom" type="text" formControlName="cognom">
+
+    <label for="email">Email: </label>
+    <input id="email" type="text" formControlName="email">
+
+    <div class="alert" *ngIf="!form.valid">Tots els camps son obligatoris.</div>
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+  
+</form>

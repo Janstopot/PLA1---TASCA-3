@@ -1,0 +1,25 @@
+<h1>Llista d'usuaris</h1>
+
+<h3>Clicka sobre un usuari per editar</h3>
+
+<table>
+    <thead>
+        <th>Nom</th>
+        <th>Cognom</th>
+        <th>Email</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userList; let i = index" (click) ="openDetails(i)">
+            <td>{{user.nom}}</td>
+            <td>{{user.cognom}}</td>
+            <td>{{user.email}}</td>
+            <button (click)="delete(i)">Eliminar</button>
+        </tr>
+    </tbody>
+    <button class="deleteAll" (click)="deleteAll()">Eliminar tots els usuaris</button>
+</table>
+
+<button (click)="newUser()">Crear nou usuari</button>
+<app-new-user *ngIf="isNewUserOpen" (closeComponent)="ngOnInit()"></app-new-user>
+<app-user-details *ngIf="isModalOpen" [selectedUser] = "selectedUser" [index] = "indexOfSelectedUser" (closeModal)="closeDetails()"></app-user-details>

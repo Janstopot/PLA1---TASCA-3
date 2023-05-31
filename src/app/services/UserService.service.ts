@@ -15,35 +15,29 @@ constructor() { }
   }
 
 
-  insertUsuari(user: User) {
+  insertUsuari(user: User) : void {
     const list: User[] = this.getAllUsuaris();
     list.push(user);
     localStorage.setItem("users", JSON.stringify(list));
   }
 
-  removeUsuari(i: number) {
-    const listString = localStorage.getItem("users");
-    if (listString) {
-      let list: User[] = JSON.parse(listString);
+  removeUsuari(i: number) : void {
+    let list: User[] = this.getAllUsuaris();
       if (i >= 0 && i < list.length) {
         list = list.filter((_, index) => index !== i);
         localStorage.setItem("users", JSON.stringify(list));
-      }
     }
   }
 
-  deleteAllUsuaris(){
+  deleteAllUsuaris() : void{
     localStorage.clear()
   }
 
-  updateUsuari(updatedUser : User, i : number){
-    const listString = localStorage.getItem("users");
-    if (listString) {
-      let list: User[] = JSON.parse(listString);
+  updateUsuari(updatedUser : User, i : number) : void{
+    const list: User[] = this.getAllUsuaris();
       if (i >= 0 && i < list.length) {
         list.splice(i, 1, updatedUser);
         localStorage.setItem("users", JSON.stringify(list));
-      }
     }    
   }
 }
